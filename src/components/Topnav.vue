@@ -1,18 +1,41 @@
 <template>
   <div class="topnav">
-    <div class="logo">LOGO</div>
+    <div
+      class="logo"
+      @click="toggleMenu"
+    >LOGO</div>
     <ul class="menu">
       <li>菜单1</li>
       <li>菜单2</li>
+		<span class="toggleAside"></span>
     </ul>
   </div>
 </template>
+<script lang="ts">
+import { inject, Ref } from "vue";
+export default {
+  setup() {
+    const menuVisible = inject<Ref<boolean>>("xxx"); // get
+    console.log("topnav 获取的menuVisible为:" + menuVisible.value);
+    const toggleMenu = () => {
+      // 把 menuVisible 的值取返然后赋值给 menuVisible 的 value
+      // 相当于 x = x+1
+      menuVisible.value = !menuVisible.value;
+    };
+    return { toggleMenu };
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 .topnav {
   background: pink;
   display: flex;
   padding: 16px;
+  position: relative;
+  z-index: 10;
+  justify-content: center;
+  align-content: center;
   > .logo {
     max-width: width 6em;
     margin-right: auto;
@@ -24,6 +47,11 @@
     > .li {
       margin: 0 1em;
     }
+  }
+  >.toggleMenu{}
+  @media(max-width:500px){
+	  >.menu{display:none;}
+	  >.logo{margin:0 auto;}
   }
 }
 </style>
