@@ -1,7 +1,8 @@
 <template>
   <button
+	class="bubble-switch"
     @click="toggle"
-    :class="{checked:value}"
+    :class="{'bubble-checked':value}"
   ><span></span></button>
   <!-- <div>{{value}}</div> -->
 </template>
@@ -22,10 +23,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $h: 22px;
 $h2: $h - 4px;
-button {
+.bubble-switch {
   height: $h;
   width: $h * 2;
   border: none;
@@ -42,7 +43,7 @@ button {
     border-radius: $h2 / 2;
     transition: all 250ms;
   }
-  &.checked {
+  &.bubble-checked {
     background: #1890ff;
     > span {
       left: calc(100% - #{$h2} - 2px);
@@ -56,7 +57,7 @@ button {
       width: $h2 + 4px;
     }
   }
-  &.checked:active {
+  &.bubble-checked:active {
     > span {
       width: $h2 + 4px;
       margin-left: -4px;
