@@ -1,10 +1,6 @@
 <template>
-  <button
-    class="bubble-button"
-    :class="classes"
-	 :disabled="disabled"
-  >
-   <span v-if="loading" class="bubble-loadingIndictor"></span>
+  <button class="bubble-button" :class="classes" :disabled="disabled">
+    <span v-if="loading" class="bubble-loadingIndicator"></span>
     <slot />
   </button>
 </template>
@@ -20,26 +16,26 @@ export default {
       type: String,
       default: "normal",
     },
-	 level:{
-		 type:String,
-		 default:"normal",
-	 },
-	 disabled:{
-		 type:Boolean,
-		 default:false
-	 },
-	 loading:{
-		 type:Boolean,
-		 default:false
-	 }
+    level: {
+      type: String,
+      default: "normal",
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    loading: {
+      type: Boolean,
+      default: false
+    }
   },
   setup(props) {
-    const { theme, size,level } = props;
+    const { theme, size, level } = props;
     const classes = computed(() => {
       return {
         [`bubble-theme-${theme}`]: theme,
         [`bubble-size-${size}`]: size,
-		  [`bubble-size-${size}`]: level,
+        [`bubble-level-${level}`]: level,
       };
     });
     return { classes };
@@ -189,4 +185,4 @@ $grey: grey;
   0%{transform: rotate(0deg)} 
   100%{transform: rotate(360deg)} 
 }
-</style> 
+</style>
