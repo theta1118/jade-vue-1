@@ -1,32 +1,45 @@
 <template>
-  <div class="topnav">
-    <div class="logo">
-      <svg class="icon">
-        <use xlink:href="#icon-king"></use>
-      </svg>
-    </div>
-    <ul class="menu">
-      <li>菜单1</li>
-      <li>菜单2</li>
-    </ul>
-    <span
-      class="toggleAside"
-      @click="toggleMenu"
-    ></span>
+<div class="topnav">
+  <div class="logo">
+    <svg class="icon">
+      <use xlink:href="#icon-king"></use>
+    </svg>
   </div>
+  <ul class="menu">
+    <li>
+      <router-link to="/doc">文档</router-link>
+    </li>
+  </ul>
+  <svg v-if="toggleMenuButtonVisible" class="toggleAside" @click="toggleMenu">
+    <use xlink:href="#icon-menu"></use>
+  </svg>
+</div>
 </template>
+
 <script lang="ts">
-import { inject, Ref } from "vue";
+import {
+  inject,
+  Ref
+} from "vue";
 export default {
+  props: {
+    toggleMenuButtonVisible: {
+      type: Boolean,
+      default: false
+    }
+  },
   setup() {
-    const menuVisible = inject<Ref<boolean>>("menuVisible"); // get
+    const menuVisible = inject < Ref < boolean >> ("menuVisible"); // get
     const toggleMenu = () => {
       menuVisible.value = !menuVisible.value;
     };
-    return { toggleMenu };
+    return {
+      toggleMenu
+    };
   },
 };
 </script>
+
 <style lang="scss" scoped>
 $color: #007974;
 .topnav {
@@ -40,40 +53,40 @@ $color: #007974;
   z-index: 10;
   justify-content: center;
   align-items: center;
-  > .logo {
+  >.logo {
     max-width: 6em;
     margin-right: auto;
-	 > svg{
-		width: 32px;
-		height: 32px;
-	 }
+    >svg {
+      width: 32px;
+      height: 32px;
+    }
   }
-  > .menu {
+  >.menu {
     display: flex;
     white-space: nowrap;
     flex-wrap: nowrap;
-    > li {
+    >li {
       margin: 0 1em;
     }
   }
-  > .toggleAside {
-    width: 24px;
-    height: 24px;
-    background: red;
+  >.toggleAside {
+    width: 32px;
+    height: 32px;
     position: absolute;
     left: 16px;
     top: 50%;
     transform: translateY(-50%);
     display: none;
+    background: fade-out(black, 0.9);
   }
   @media (max-width: 500px) {
-    > .menu {
+    >.menu {
       display: none;
     }
-    > .logo {
+    >.logo {
       margin: 0 auto;
     }
-    > .toggleAside {
+    >.toggleAside {
       display: inline-block;
     }
   }
