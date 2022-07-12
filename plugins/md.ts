@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import path from 'path'
 import fs from 'fs'
 import marked from 'marked'
@@ -28,4 +30,4 @@ export function md() {
       transform: ({ code }) => mdToJs(code) 
     }]
   }
-} 
+}
